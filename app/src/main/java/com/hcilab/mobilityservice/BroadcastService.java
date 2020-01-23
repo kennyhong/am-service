@@ -49,17 +49,13 @@ public class BroadcastService extends Service {
     public Runnable sendData = new Runnable() {
 
         public void run() {
-            if(MainActivity.sendData) {
-                intentString = MainActivity.sensorData.toString() ;
-            }
 
-            if (intentString != null) {
-                Log.i("intentString",intentString);
-            }
-            else
-            {
-                Log.i("intentString", "NULL");
-            }
+            intentString = MainActivity.sensorData.toJsonString() ;
+
+
+
+            Log.i("intentString",intentString);
+
 
             Intent sendIntent = new Intent();
             sendIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_FROM_BACKGROUND | Intent.FLAG_INCLUDE_STOPPED_PACKAGES);

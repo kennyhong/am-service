@@ -19,66 +19,66 @@ public class UnitySensorData {
     }
 
     public void initialSetup() throws JSONException {
-        accelerationObj.put("x", "0");
-        accelerationObj.put("y", "0");
-        accelerationObj.put("z", "0");
-        rvObj.put("x", "0");
-        rvObj.put("y", "0");
-        rvObj.put("z", "0");
-        laObj.put("x", "0");
-        laObj.put("y", "0");
-        laObj.put("z", "0");
-        gyroObj.put("x", "0");
-        gyroObj.put("y", "0");
-        gyroObj.put("z", "0");
+        accelerationObj.put("x", 0);
+        accelerationObj.put("y", 0);
+        accelerationObj.put("z", 0);
+        rvObj.put("x", 0);
+        rvObj.put("y", 0);
+        rvObj.put("z", 0);
+        laObj.put("x", 0);
+        laObj.put("y", 0);
+        laObj.put("z", 0);
+        gyroObj.put("x", 0);
+        gyroObj.put("y", 0);
+        gyroObj.put("z", 0);
     }
 
     public void setAcceleration(float[] vals) throws JSONException {
-        accelerationObj.put("x", String.format("%.4f", vals[0]));
-        accelerationObj.put("y", String.format("%.4f", vals[1]));
-        accelerationObj.put("z", String.format("%.4f", vals[2]));
+        accelerationObj.put("x", vals[0]);
+        accelerationObj.put("y", vals[1]);
+        accelerationObj.put("z", vals[2]);
     }
 
     public void setRotationVector(float[] vals) throws JSONException {
-        rvObj.put("x", String.format("%.4f", vals[0]));
-        rvObj.put("y", String.format("%.4f", vals[1]));
-        rvObj.put("z", String.format("%.4f", vals[2]));
+        rvObj.put("x", vals[0]);
+        rvObj.put("y", vals[1]);
+        rvObj.put("z", vals[2]);
     }
 
     public void setLinearAcceleration(float[] vals) throws JSONException {
-        laObj.put("x", String.format("%.4f", vals[0]));
-        laObj.put("y", String.format("%.4f", vals[1]));
-        laObj.put("z", String.format("%.4f", vals[2]));
+        laObj.put("x", vals[0]);
+        laObj.put("y", vals[1]);
+        laObj.put("z", vals[2]);
     }
 
     public void setGyro(float[] vals) throws JSONException {
-        gyroObj.put("x", String.format("%.4f", vals[0]));
-        gyroObj.put("y", String.format("%.4f", vals[1]));
-        gyroObj.put("z", String.format("%.4f", vals[2]));
+        gyroObj.put("x", vals[0]);
+        gyroObj.put("y", vals[1]);
+        gyroObj.put("z", vals[2]);
     }
 
     public void stopAcceleration()throws JSONException {
-        accelerationObj.put("x", "0");
-        accelerationObj.put("y", "0");
-        accelerationObj.put("z", "0");
+        accelerationObj.put("x", 0);
+        accelerationObj.put("y", 0);
+        accelerationObj.put("z", 0);
     }
 
     public void stopRotationVector() throws JSONException{
-        rvObj.put("x", "0");
-        rvObj.put("y", "0");
-        rvObj.put("z", "0");
+        rvObj.put("x", 0);
+        rvObj.put("y", 0);
+        rvObj.put("z", 0);
     }
 
     public void stopLinearAcceleration() throws JSONException {
-        laObj.put("x", "0");
-        laObj.put("y", "0");
-        laObj.put("z", "0");
+        laObj.put("x", 0);
+        laObj.put("y", 0);
+        laObj.put("z", 0);
     }
 
     public void stopGyro() throws JSONException {
-        gyroObj.put("x", "0");
-        gyroObj.put("y", "0");
-        gyroObj.put("z", "0");
+        gyroObj.put("x", 0);
+        gyroObj.put("y", 0);
+        gyroObj.put("z", 0);
     }
 
     public JSONObject getSensorData() throws JSONException {
@@ -89,11 +89,20 @@ public class UnitySensorData {
         this.sensorData = sensorData;
     }
 
+    public String toJsonString() {
+        try {
+            build();
+        }catch (JSONException e)   {
+            e.printStackTrace();
+        }
+      return sensorData.toString();
+    }
+
     private JSONObject build() throws JSONException {
-        sensorData.put("acceleration", accelerationObj);
-        sensorData.put("linear_acceleration", laObj);
-        sensorData.put("rotationvelocity", rvObj);
-        sensorData.put("gyro", gyroObj);
+        sensorData.put("Acceleration", accelerationObj);
+        sensorData.put("LinearAcceleration", laObj);
+        sensorData.put("RotationVector", rvObj);
+        sensorData.put("Gyroscope", gyroObj);
         return sensorData;
     }
 }

@@ -42,8 +42,6 @@ public class MainActivity extends Activity {
     private SensorDataListener mSensorDataListener_la = null;
     private SensorDataListener mSensorDataListener_rv = null;
 
-    public static boolean sendData = false;
-    public static String accXVal = "nil";
 
     private final Handler handler = new Handler();
 
@@ -89,7 +87,6 @@ public class MainActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    sendData = true;
                     mSensorDataListener_acc = new SensorDataListener() {
                         @Override
                         public void onSensorDataChanged(final SensorData data) {
@@ -113,7 +110,6 @@ public class MainActivity extends Activity {
                 } else {
                     mSensorManager.close(mSensorDataListener_acc);
                     mSensorDataListener_acc = null;
-                    sendData = false;
                     try {
                         sensorData.stopAcceleration();
                     } catch (JSONException e) {
